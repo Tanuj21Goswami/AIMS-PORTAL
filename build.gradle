@@ -1,0 +1,51 @@
+plugins {
+    id 'java'
+    id 'jacoco'
+//    id 'application'
+}
+
+group 'org.aims'
+version '1.0-SNAPSHOT'
+
+//application{
+//    mainClass='org.aims.Main'
+//}
+
+repositories {
+    mavenCentral()
+}
+
+//tasks.named('run',JavaExec){
+//    standardInput = System.in
+//}
+
+dependencies {
+    implementation 'org.postgresql:postgresql:42.5.4'
+    implementation 'org.ow2.clif.isac:FileReader:3.0.3'
+    implementation 'org.tiledreader:TiledReader:1.1.0'
+    implementation 'org.webjars.bower:ngFileReader:0.0.8'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test // tests are required to run before generating the report
+}
+
+jacoco {
+    toolVersion = "0.8.8"
+    reportsDirectory = layout.buildDirectory.dir('customJacocoReportDir')
+}
+
+jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir('jacocoHtml')
+    }
+}

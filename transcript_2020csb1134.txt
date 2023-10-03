@@ -1,0 +1,7 @@
+Report of 2020csb1134
+Course Credit Grade
+CS301  4.5    8
+CS302  3.0    6
+CS303  4.0    7
+HS103  1.5    6
+CS539  3.0    8
